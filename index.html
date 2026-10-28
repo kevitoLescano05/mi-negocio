@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevMaster: Aprende Programación</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+
+<script id="__omniSafeAlert">
+  window.alert = function(msg) {
+    const toast = document.createElement('div');
+    toast.style.cssText = 'position:fixed;bottom:20px;right:20px;background:#0f172a;color:#f8fafc;padding:12px 20px;border-radius:10px;border:1px solid #3b82f6;box-shadow:0 10px 25px rgba(0,0,0,0.35);z-index:99999;font-family:sans-serif;font-size:14px;';
+    toast.textContent = String(msg);
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3500);
+  };
+</script>
+
+
+
+
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="description" content="Lienzo limpio esperando tu idea para planear y construir." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="DevMaster: Aprende Programación" />
+  <meta property="og:site_name" content="DevMaster: Aprende Programación" />
+  <meta property="og:description" content="Lienzo limpio esperando tu idea para planear y construir." />
+  <link rel="canonical" href="https://kevitolescano05.github.io/mi-negocio/" />
+  <meta property="og:url" content="https://kevitolescano05.github.io/mi-negocio/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="DevMaster: Aprende Programación" />
+  <meta name="twitter:description" content="Lienzo limpio esperando tu idea para planear y construir." />
+  <script id="__omniSeoSchema" type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"DevMaster: Aprende Programación","description":"Lienzo limpio esperando tu idea para planear y construir.","url":"https://kevitolescano05.github.io/mi-negocio/"}</script>
+</head>
+<body class="bg-[#1c1c2e] text-white font-sans antialiased selection:bg-violet-600 selection:text-white">
+<header id="header-1" class="bg-[#1e1e2f] text-white py-4 shadow-lg w-full border-b border-[#2a2a3c] sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+      <div class="text-center sm:text-left">
+        <h1 class="text-lg sm:text-xl font-extrabold tracking-tight text-white flex items-center justify-center sm:justify-start gap-2">
+          <span>Plataforma de Aprendizaje Pro</span>
+          <span class="bg-emerald-500/10 text-emerald-400 text-[10px] px-2 py-0.5 rounded-full border border-emerald-500/20 font-mono">v2.6</span>
+        </h1>
+        <p class="text-xs text-zinc-400 mt-0.5">Sistema Educativo Exhaustivo: Vidas por hora, recarga por aciertos y bloqueo inteligente.</p>
+      </div>
+
+      <div class="flex items-center justify-center gap-3">
+        <div id="lives-badge" class="bg-[#14141f] text-rose-400 border border-rose-500/30 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-inner flex items-center gap-1.5 transition-all">
+          <span>❤️ Vidas:</span> <span id="lives-val" class="text-white font-mono">5</span>/5
+          <span id="lives-timer" class="text-[10px] text-amber-400 font-mono hidden ml-1">(🕒 60:00)</span>
+        </div>
+        <span id="user-points-badge" class="bg-violet-600/90 text-white text-xs font-bold px-3.5 py-1.5 rounded-full shadow-sm flex items-center gap-1">
+          ⭐ Puntos: <span id="points-val" class="font-mono">100</span>
+        </span>
+      </div>
+    </div>
+  </header>
+
+<nav id="nav-2" class="hidden">
+  </nav>
+
+<main id="content" class="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-8 w-full flex-grow">
+    
+    <div id="lives-lock-banner" class="hidden bg-rose-950/80 border border-rose-500/50 p-4 rounded-2xl flex flex-col sm:flex-row justify-between items-center gap-4 shadow-2xl animate-pulse">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">🚨</span>
+        <div>
+          <h3 class="text-sm font-bold text-rose-200">¡Te has quedado sin vidas (0/5)! Niveles y desafíos bloqueados temporalmente.</h3>
+          <p class="text-xs text-rose-300">Puedes seguir usando la <strong>Terminal Libre</strong> y charlar con el <strong>Asistente IA</strong> mientras esperas la recarga automática (1 vida por hora) o recargas en la tienda.</p>
+        </div>
+      </div>
+      <button onclick="refillLivesWithPoints(30)" class="bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs px-4 py-2 rounded-xl shadow transition shrink-0">Recargar ahora (30 Puntos)</button>
+    </div>
+
+    <section id="inicio" class="bg-[#242438] p-6 sm:p-8 rounded-2xl shadow-xl border border-[#32324e]">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">Centro Oficial de Aprendizaje & Prácticas Pro</h2>
+          <p class="text-zinc-300 text-xs sm:text-sm leading-relaxed max-w-3xl">
+            Sistema riguroso de vidas: ganas <strong>+1 vida por cada actividad correcta</strong>, recuperas <strong>1 vida cada hora</strong> al llegar a cero, y disfrutas de acceso libre ininterrumpido a la Terminal y Chat con IA aunque tus vidas estén agotadas.
+          </p>
+        </div>
+        <div class="bg-[#1e1e2e] p-4 rounded-xl border border-[#32324e] text-center shrink-0 w-full md:w-auto">
+          <span class="text-xs text-zinc-400 block mb-1">Estado del Sistema</span>
+          <span id="system-status-text" class="text-xs font-bold text-emerald-400 flex items-center justify-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Operativo (Vidas Activas)
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN DE DOCUMENTACIÓN / SELECCIÓN DE LENGUAJES Y NIVELES (COLOCADA PRIMERO POR SOLICITUD) -->
+    <section id="documentacion" class="bg-[#242438] p-6 sm:p-8 rounded-2xl shadow-xl border border-[#32324e] space-y-6">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-[#32324e] pb-4">
+        <div>
+          <h2 class="text-lg sm:text-xl font-bold text-white">Catálogo y Especializaciones Técnicas</h2>
+          <p class="text-xs text-zinc-400 mt-1">Explora lenguajes y temarios exhaustivos. (Sujeto a bloqueo si 0 vidas).</p>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs">
+          <button onclick="switchLangDoc('python')" id="btn-doc-python" class="bg-violet-600 text-white font-bold px-3 py-1.5 rounded-lg transition">Python 3.12+</button>
+          <button onclick="switchLangDoc('js')" id="btn-doc-js" class="bg-[#1e1e2e] text-zinc-300 hover:bg-[#32324e] font-bold px-3 py-1.5 rounded-lg transition border border-[#32324e]">JavaScript (ES2024)</button>
+          <button onclick="switchLangDoc('php')" id="btn-doc-php" class="bg-[#1e1e2e] text-zinc-300 hover:bg-[#32324e] font-bold px-3 py-1.5 rounded-lg transition border border-[#32324e]">PHP 8.3+</button>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-2 border-b border-[#32324e] pb-3 text-xs">
+        <button onclick="switchLevelTab('basico')" id="tab-lvl-basico" class="bg-violet-500/20 text-violet-300 font-bold px-3 py-1.5 rounded-lg border border-violet-500/30">Nivel Básico (Sintaxis)</button>
+        <button onclick="switchLevelTab('avanzado')" id="tab-lvl-avanzado" class="bg-[#1e1e2e] text-zinc-400 hover:bg-[#32324e] px-3 py-1.5 rounded-lg border border-[#32324e]">Nivel Avanzado (Bucles & Funciones)</button>
+        <button onclick="switchLevelTab('pro')" id="tab-lvl-pro" class="bg-[#1e1e2e] text-zinc-400 hover:bg-[#32324e] px-3 py-1.5 rounded-lg border border-[#32324e]">Especializaciones Pro 🚀</button>
+      </div>
+
+      <div id="doc-content-area" class="space-y-4 text-xs text-zinc-300 leading-relaxed">
+        <h3 class="text-sm font-bold text-white">Documentación Oficial de Python 3.12+ (Nivel Básico)</h3>
+        <p>Python es un lenguaje interpretado, de alto nivel y tipado dinámico. Su filosofía hace hincapié en la legibilidad de su código.</p>
+        <div class="bg-[#14141f] p-4 rounded-xl border border-[#32324e] font-mono text-zinc-200">
+          <span class="text-violet-400">def</span> <span class="text-emerald-300">saludar</span>(nombre):<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-violet-400">return</span> <span class="text-amber-300">f"Hola, {nombre}"</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN DE PRÁCTICA UBICADA SEGUNDA POR SOLICITUD -->
+    <section id="ejercicios" class="bg-[#242438] p-6 sm:p-8 rounded-2xl shadow-xl border border-[#32324e] space-y-6">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-[#32324e] pb-4">
+        <div>
+          <h2 class="text-lg sm:text-xl font-bold text-white">Estación de Práctica & Desafíos Interactivos</h2>
+          <p class="text-xs text-zinc-400 mt-1">Lee la explicación teórica, escribe tu código en la terminal integrada y valida tu solución.</p>
+        </div>
+        <div class="flex items-center gap-2 text-xs">
+          <span class="bg-violet-500/10 text-violet-400 px-3 py-1 rounded-lg border border-violet-500/20 font-mono">Ejercicio <span id="current-ex-num">1</span> / 4</span>
+        </div>
+      </div>
+
+      <div id="exercise-card" class="space-y-4">
+        <div class="bg-[#1e1e2e] p-5 rounded-xl border border-[#32324e] space-y-3">
+          <div class="flex justify-between items-center">
+            <h3 id="ex-title" class="text-sm font-bold text-emerald-400">1. Sintaxis Básica y Salida por Pantalla (print)</h3>
+            <span class="text-[10px] bg-emerald-500/10 text-emerald-300 px-2.5 py-1 rounded border border-emerald-500/20 font-mono">Python 3.12+</span>
+          </div>
+          <p id="ex-desc" class="text-xs text-zinc-300 leading-relaxed">
+            En Python, la función <code class="text-emerald-400">print()</code> se utiliza para mostrar resultados por pantalla. Escribe un comando para imprimir <code class="text-emerald-400">"¡Hola, Hacker!"</code> en la terminal y ejecuta la prueba.
+          </p>
+          <div class="bg-[#14141f] p-3 rounded-lg border border-[#32324e] text-xs font-mono text-zinc-300">
+            <span class="text-zinc-500"># Ejemplo oficial:</span><br>
+            <span class="text-violet-400">print</span>(<span class="text-amber-300">"¡Hola, Hacker!"</span>)
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <label class="block text-xs font-bold text-zinc-300">Terminal de Práctica (Escribe tu código aquí):</label>
+          <div class="flex gap-2">
+            <input type="text" id="exercise-input" placeholder="Ej: print('¡Hola, Hacker!')" class="flex-grow bg-[#14141f] border border-[#32324e] text-xs text-white px-4 py-2.5 rounded-xl focus:outline-none focus:border-violet-500 font-mono">
+            <button onclick="validateCurrentExercise(true)" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow transition shrink-0">Validar Solución Correcta</button>
+            <button onclick="validateCurrentExercise(false)" class="bg-zinc-700 hover:bg-zinc-600 text-zinc-200 font-bold text-xs px-3 py-2.5 rounded-xl shadow transition shrink-0" title="Simula un error para perder 1 vida">Simular Error (-1)</button>
+          </div>
+        </div>
+
+        <div class="flex justify-between items-center pt-2">
+          <button onclick="prevExercise()" class="bg-[#1e1e2e] hover:bg-[#32324e] text-zinc-300 font-bold text-xs px-4 py-2 rounded-xl border border-[#32324e] transition">⬅ Anterior</button>
+          <button onclick="nextExercise()" class="bg-[#1e1e2e] hover:bg-[#32324e] text-zinc-300 font-bold text-xs px-4 py-2 rounded-xl border border-[#32324e] transition">Siguiente ➡</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TERMINAL IA -->
+    <section id="terminal-ia" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="bg-[#242438] p-6 rounded-2xl shadow-xl border border-[#32324e] space-y-4 flex flex-col">
+        <div class="flex justify-between items-center border-b border-[#32324e] pb-3">
+          <div>
+            <h3 class="text-sm font-bold text-white flex items-center gap-2"><span>💻</span> Terminal Libre de Ejecución</h3>
+            <p class="text-[11px] text-zinc-400">Sandbox interactivo (Siempre disponible)</p>
+          </div>
+          <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded border border-emerald-500/20 font-mono">Sandbox OK</span>
+        </div>
+        <div id="terminal-output" class="bg-[#14141f] p-4 rounded-xl border border-[#32324e] font-mono text-xs text-zinc-300 h-48 overflow-y-auto space-y-1.5 flex-grow">
+          <div class="text-zinc-500">// Terminal Interactiva v2.6 iniciada. Escribe comandos o pruebas.</div>
+          <div class="text-emerald-400">&gt; Sistema listo para recibir instrucciones.</div>
+        </div>
+        <div class="flex gap-2">
+          <input type="text" id="free-terminal-input" placeholder="Escribe comando o código..." class="flex-grow bg-[#14141f] border border-[#32324e] text-xs text-white px-3.5 py-2.5 rounded-xl focus:outline-none focus:border-violet-500 font-mono" onkeydown="if(event.key==='Enter') runFreeTerminal()">
+          <button onclick="runFreeTerminal()" class="bg-violet-600 hover:bg-violet-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow transition">Ejecutar en Terminal</button>
+          <button onclick="document.getElementById('terminal-output').innerHTML='&gt; Terminal limpia.'; document.getElementById('free-terminal-input').value='';" class="bg-[#1e1e2e] hover:bg-[#32324e] text-zinc-400 hover:text-white font-bold text-xs px-3 py-2.5 rounded-xl border border-[#32324e] transition" title="Limpiar Terminal">🗑️</button>
+        </div>
+      </div>
+
+      <div class="bg-[#242438] p-6 rounded-2xl shadow-xl border border-[#32324e] space-y-4 flex flex-col">
+        <div class="flex justify-between items-center border-b border-[#32324e] pb-3">
+          <div>
+            <h3 class="text-sm font-bold text-white flex items-center gap-2"><span>🤖</span> Asistente IA de Programación</h3>
+            <p class="text-[11px] text-zinc-400">Tutor inteligente 24/7 (Siempre disponible)</p>
+          </div>
+          <span class="text-[10px] bg-violet-500/10 text-violet-400 px-2.5 py-1 rounded border border-violet-500/20 font-mono">GPT-4 Turbo</span>
+        </div>
+        <div id="ai-chat-messages" class="bg-[#14141f] p-4 rounded-xl border border-[#32324e] text-xs text-zinc-300 h-48 overflow-y-auto space-y-3 flex-grow">
+          <div class="bg-[#1e1e2e] p-3 rounded-xl border border-[#32324e] space-y-1">
+            <span class="font-bold text-violet-400 block">🤖 Tutor IA:</span>
+            <p class="text-zinc-200">¡Hola! Soy tu tutor técnico. Pregúntame sobre sintaxis, depuración de errores o conceptos avanzados.</p>
+          </div>
+        </div>
+        <div class="flex gap-2">
+          <input type="text" id="ai-chat-input" placeholder="Pregúntale al tutor IA..." class="flex-grow bg-[#14141f] border border-[#32324e] text-xs text-white px-3.5 py-2.5 rounded-xl focus:outline-none focus:border-violet-500" onkeydown="if(event.key==='Enter') sendAIChatMessage()">
+          <button onclick="sendAIChatMessage()" class="bg-violet-600 hover:bg-violet-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow transition">Enviar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECOMENDACIONES -->
+    <section id="recomendaciones" class="bg-[#242438] p-6 sm:p-8 rounded-2xl shadow-xl border border-[#32324e] space-y-4">
+      <h3 class="text-sm font-bold text-white flex items-center gap-2"><span>💡</span> Recomendaciones y Tips de Estudio</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+        <div class="bg-[#1e1e2e] p-4 rounded-xl border border-[#32324e] space-y-2">
+          <span class="font-bold text-emerald-400 block">1. Constancia Diaria</span>
+          <p class="text-zinc-300">Completa al menos 2 ejercicios al día para acumular puntos y asegurar vidas extra.</p>
+        </div>
+        <div class="bg-[#1e1e2e] p-4 rounded-xl border border-[#32324e] space-y-2">
+          <span class="font-bold text-violet-400 block">2. Usa la Terminal Libre</span>
+          <p class="text-zinc-300">Si te quedas sin vidas, experimenta sin miedo en el sandbox interactivo para no perder práctica.</p>
+        </div>
+        <div class="bg-[#1e1e2e] p-4 rounded-xl border border-[#32324e] space-y-2">
+          <span class="font-bold text-amber-400 block">3. Consulta al Tutor IA</span>
+          <p class="text-zinc-300">Pide explicaciones detalladas cuando un ejercicio falle para entender el trasfondo lógico.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIENDA -->
+    <section id="tienda" class="bg-[#242438] p-6 sm:p-8 rounded-2xl shadow-xl border border-[#32324e] space-y-6">
+      <div class="flex justify-between items-center border-b border-[#32324e] pb-4">
+        <div>
+          <h2 class="text-lg sm:text-xl font-bold text-white">Tienda de Canje Pro</h2>
+          <p class="text-xs text-zinc-400 mt-1">Intercambia tus puntos ⭐ por vidas y beneficios exclusivos.</p>
+        </div>
+        <div class="bg-violet-600/20 text-violet-300 border border-violet-500/30 text-xs font-bold px-3.5 py-1.5 rounded-full">
+          Saldo: <span id="store-points-val" class="font-mono">100</span> ⭐
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs">
+        <div class="bg-[#1e1e2e] p-5 rounded-xl border border-[#32324e] space-y-3 flex flex-col justify-between">
+          <div class="space-y-2">
+            <span class="text-2xl block">❤️</span>
+            <h3 class="font-bold text-white text-sm">Recarga Rápida (+3 Vidas)</h3>
+            <p class="text-zinc-400">Restaura de inmediato 3 vidas para continuar practicando en los niveles.</p>
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t border-[#32324e]">
+            <span class="font-bold text-amber-400">50 ⭐</span>
+            <button onclick="redeemItem(50)" class="bg-violet-600 hover:bg-violet-700 text-white font-bold px-3.5 py-1.5 rounded-lg shadow transition">Canjeo instantáneo</button>
+          </div>
+        </div>
+
+        <div class="bg-[#1e1e2e] p-5 rounded-xl border border-[#32324e] space-y-3 flex flex-col justify-between">
+          <div class="space-y-2">
+            <span class="text-2xl block">🛡️</span>
+            <h3 class="font-bold text-white text-sm">Escudo Anti-Error (1 Uso)</h3>
+            <p class="text-zinc-400">Evita la pérdida de tu próxima vida al fallar un desafío en la estación.</p>
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t border-[#32324e]">
+            <span class="font-bold text-amber-400">80 ⭐</span>
+            <button onclick="redeemItem(80)" class="bg-violet-600 hover:bg-violet-700 text-white font-bold px-3.5 py-1.5 rounded-lg shadow transition">Canjear (80 ⭐)</button>
+          </div>
+        </div>
+
+        <div class="bg-[#1e1e2e] p-5 rounded-xl border border-[#32324e] space-y-3 flex flex-col justify-between">
+          <div class="space-y-2">
+            <span class="text-2xl block">⚡</span>
+            <h3 class="font-bold text-white text-sm">Pase VIP de Prácticas Pro</h3>
+            <p class="text-zinc-400">Desbloquea acceso ilimitado a pistas avanzadas durante 24 horas.</p>
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t border-[#32324e]">
+            <span class="font-bold text-amber-400">150 ⭐</span>
+            <button onclick="redeemItem(150)" class="bg-violet-600 hover:bg-violet-700 text-white font-bold px-3.5 py-1.5 rounded-lg shadow transition">Canjear (150 ⭐)</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOGIN -->
+    <section id="login" class="bg-[#242438] p-6 sm:p-8 rounded-2xl shadow-xl border border-[#32324e] max-w-xl mx-auto space-y-6">
+      <div class="text-center space-y-1">
+        <h2 class="text-lg font-bold text-white">Sincronización de Perfil & Progreso</h2>
+        <p class="text-xs text-zinc-400">Inicia sesión para respaldar tus puntos y vidas en la nube.</p>
+      </div>
+      <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-zinc-300 mb-1">Correo Electrónico:</label>
+          <input type="email" id="login-email" required placeholder="hacker@omniweb.pro" class="w-full bg-[#14141f] border border-[#32324e] text-xs text-white px-4 py-2.5 rounded-xl focus:outline-none focus:border-violet-500">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-zinc-300 mb-1">Contraseña:</label>
+          <input type="password" id="login-pass" required placeholder="••••••••" class="w-full bg-[#14141f] border border-[#32324e] text-xs text-white px-4 py-2.5 rounded-xl focus:outline-none focus:border-violet-500">
+        </div>
+        <button type="submit" class="w-full bg-violet-600 hover:bg-violet-700 text-white font-bold text-xs py-3 rounded-xl shadow transition">Sincronizar y Acceder</button>
+      </form>
+    </section>
+
+  </main>
+
+<footer id="footer-5" class="bg-[#181824] text-zinc-400 py-6 border-t border-[#2a2a3c] mt-auto">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
+      <p>© 2025 Plataforma de Aprendizaje Pro. Sistema Integral Educativo con Control de Vidas.</p>
+      <div class="flex gap-4">
+        <a href="#" class="hover:text-white transition">Privacidad</a>
+        <a href="#" class="hover:text-white transition">Términos</a>
+        <a href="#" class="hover:text-white transition">Soporte Técnico</a>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  let lives = 5;
+  let points = 100;
+  let currentEx = 1;
+  const maxEx = 4;
+  let currentLang = 'python';
+  let currentLevel = 'basico';
+  let livesTimerInterval = null;
+  let secondsLeft = 3600;
+
+  const exercises = {
+    python: {
+      basico: [
+        { num: 1, title: "1. Sintaxis Básica y Salida por Pantalla (print)", desc: "En Python, la función print() se utiliza para mostrar resultados por pantalla. Escribe un comando para imprimir \"¡Hola, Hacker!\" en la terminal y ejecuta la prueba.", code: "print(\"¡Hola, Hacker!\")", hint: "print(\"texto\")" },
+        { num: 2, title: "2. Variables y Tipos de Datos Numéricos", desc: "Declara una variable llamada 'edad' con el valor 25 y muéstrala.", code: "edad = 25\nprint(edad)", hint: "edad = 25" },
+        { num: 3, title: "3. Operaciones Aritméticas Básicas", desc: "Calcula el área de un rectángulo de base 10 y altura 5.", code: "base = 10\naltura = 5\nprint(base * altura)", hint: "base * altura" },
+        { num: 4, title: "4. Cadenas de Texto y Concatenación", desc: "Concatena tu nombre y apellido usando f-strings.", code: "nombre = \"Ana\"\nprint(f\"Hola {nombre}\")", hint: "f\"...\"" }
+      ]
+    },
+    js: {
+      basico: [
+        { num: 1, title: "1. Consola en JavaScript", desc: "Usa console.log para mostrar un mensaje.", code: "console.log('Hola JS');", hint: "console.log()" }
+      ]
+    },
+    php: {
+      basico: [
+        { num: 1, title: "1. Salida en PHP", desc: "Usa echo para mostrar un mensaje.", code: "echo 'Hola PHP';", hint: "echo" }
+      ]
+    }
+  };
+
+  function updateUI() {
+    document.getElementById('lives-val').textContent = lives;
+    document.getElementById('points-val').textContent = points;
+    document.getElementById('store-points-val').textContent = points;
+    
+    const banner = document.getElementById('lives-lock-banner');
+    const exercisesSec = document.getElementById('ejercicios');
+    const docSec = document.getElementById('documentacion');
+    const statusText = document.getElementById('system-status-text');
+
+    if (lives <= 0) {
+      banner.classList.remove('hidden');
+      exercisesSec.style.opacity = '0.4';
+      exercisesSec.style.pointerEvents = 'none';
+      docSec.style.opacity = '0.4';
+      docSec.style.pointerEvents = 'none';
+      statusText.innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span> Bloqueado (0 Vidas)';
+      statusText.className = 'text-xs font-bold text-rose-400 flex items-center justify-center gap-1.5';
+      startLivesTimer();
+    } else {
+      banner.classList.add('hidden');
+      exercisesSec.style.opacity = '1';
+      exercisesSec.style.pointerEvents = 'auto';
+      docSec.style.opacity = '1';
+      docSec.style.pointerEvents = 'auto';
+      statusText.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Operativo (Vidas Activas)';
+      statusText.className = 'text-xs font-bold text-emerald-400 flex items-center justify-center gap-1.5';
+      stopLivesTimer();
+    }
+  }
+
+  function startLivesTimer() {
+    const timerSpan = document.getElementById('lives-timer');
+    timerSpan.classList.remove('hidden');
+    if (livesTimerInterval) return;
+    livesTimerInterval = setInterval(() => {
+      secondsLeft--;
+      let mins = Math.floor(secondsLeft / 60);
+      let secs = secondsLeft % 60;
+      timerSpan.textContent = `(🕒 ${mins}:${secs < 10 ? '0' : ''}${secs})`;
+      if (secondsLeft <= 0) {
+        lives = 1;
+        secondsLeft = 3600;
+        updateUI();
+      }
+    }, 1000);
+  }
+
+  function stopLivesTimer() {
+    if (livesTimerInterval) {
+      clearInterval(livesTimerInterval);
+      livesTimerInterval = null;
+    }
+    document.getElementById('lives-timer').classList.add('hidden');
+  }
+
+  function updateExerciseView() {
+    const list = (exercises[currentLang] && exercises[currentLang][currentLevel]) || exercises.python.basico;
+    const ex = list[currentEx - 1] || list[0];
+    document.getElementById('current-ex-num').textContent = currentEx;
+    document.getElementById('ex-title').textContent = ex.title;
+    document.getElementById('ex-desc').textContent = ex.desc;
+    document.getElementById('exercise-input').value = ex.code;
+  }
+
+  function nextExercise() {
+    const list = (exercises[currentLang] && exercises[currentLang][currentLevel]) || exercises.python.basico;
+    if (currentEx < list.length) {
+      currentEx++;
+      updateExerciseView();
+    } else {
+      alert("¡Has completado todos los ejercicios de esta sección!");
+    }
+  }
+
+  function prevExercise() {
+    if (currentEx > 1) {
+      currentEx--;
+      updateExerciseView();
+    }
+  }
+
+  function validateCurrentExercise(isCorrect) {
+    if (isCorrect) {
+      lives = Math.min(5, lives + 1);
+      points += 20;
+      alert("¡Correcto! +1 vida y +20 puntos.");
+    } else {
+      lives = Math.max(0, lives - 1);
+      alert("Respuesta incorrecta. Has perdido 1 vida.");
+    }
+    updateUI();
+  }
+
+  function refillLivesWithPoints(cost) {
+    if (points >= cost) {
+      points -= cost;
+      lives = 5;
+      alert("¡Vidas recargadas al máximo!");
+      updateUI();
+    } else {
+      alert("No tienes suficientes puntos.");
+    }
+  }
+
+  function redeemItem(cost) {
+    if (points >= cost) {
+      points -= cost;
+      lives = Math.min(5, lives + 3);
+      alert("¡Canje exitoso! Se han sumado beneficios a tu perfil.");
+      updateUI();
+    } else {
+      alert("Puntos insuficientes para este canje.");
+    }
+  }
+
+  function runFreeTerminal() {
+    const input = document.getElementById('free-terminal-input');
+    const out = document.getElementById('terminal-output');
+    const val = input.value.trim();
+    if (!val) return;
+
+    out.innerHTML += `<div class="text-violet-400">&gt; ${val}</div>`;
+    try {
+      let res;
+      if (val.startsWith('print(')) {
+        res = val.substring(6, val.length - 1).replace(/["']/g, '');
+      } else {
+        res = String(eval(val));
+      }
+      out.innerHTML += `<div class="text-emerald-300">${res}</div>`;
+    } catch (err) {
+      out.innerHTML += `<div class="text-rose-400">Error: ${err.message}</div>`;
+    }
+    input.value = '';
+    out.scrollTop = out.scrollHeight;
+  }
+
+  function sendAIChatMessage() {
+    const input = document.getElementById('ai-chat-input');
+    const area = document.getElementById('ai-chat-messages');
+    const val = input.value.trim();
+    if (!val) return;
+
+    area.innerHTML += `
+      <div class="bg-[#14141f] p-3 rounded-xl border border-[#32324e] space-y-1 text-right">
+        <span class="font-bold text-emerald-400 block">Tú:</span>
+        <p class="text-zinc-200">${val}</p>
+      </div>
+    `;
+    input.value = '';
+
+    setTimeout(() => {
+      area.innerHTML += `
+        <div class="bg-[#1e1e2e] p-3 rounded-xl border border-[#32324e] space-y-1">
+          <span class="font-bold text-violet-400 block">🤖 Tutor IA:</span>
+          <p class="text-zinc-200">Analizando tu consulta sobre "${val}". Recuerda verificar siempre la indentación y tipos de datos en tu código.</p>
+        </div>
+      `;
+      area.scrollTop = area.scrollHeight;
+    }, 600);
+  }
+
+  function switchLangDoc(lang) {
+    currentLang = lang;
+    ['python', 'js', 'php'].forEach(l => {
+      const btn = document.getElementById('btn-doc-' + l);
+      if (btn) {
+        if (l === lang) {
+          btn.className = "bg-violet-600 text-white font-bold px-3 py-1.5 rounded-lg transition";
+        } else {
+          btn.className = "bg-[#1e1e2e] text-zinc-300 hover:bg-[#32324e] font-bold px-3 py-1.5 rounded-lg transition border border-[#32324e]";
+        }
+      }
+    });
+    currentEx = 1;
+    updateExerciseView();
+  }
+
+  function switchLevelTab(lvl) {
+    currentLevel = lvl;
+    ['basico', 'avanzado', 'pro'].forEach(l => {
+      const tab = document.getElementById('tab-lvl-' + l);
+      if (tab) {
+        if (l === lvl) {
+          tab.className = "bg-violet-500/20 text-violet-300 font-bold px-3 py-1.5 rounded-lg border border-violet-500/30";
+        } else {
+          tab.className = "bg-[#1e1e2e] text-zinc-400 hover:bg-[#32324e] px-3 py-1.5 rounded-lg border border-[#32324e]";
+        }
+      }
+    });
+    currentEx = 1;
+    updateExerciseView();
+  }
+
+  function handleLogin(e) {
+    e.preventDefault();
+    alert("¡Sesión iniciada correctamente! Progreso sincronizado.");
+  }
+</script>
+</body>
+</html>
